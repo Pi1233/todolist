@@ -1,0 +1,95 @@
+@media only screen {
+  .inp {
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 1370px) {
+  form {
+    padding-top: 5px;
+  }
+  .button {
+    height: 50px;
+    width: 50px;
+  }
+  .input {
+    width: 70%;
+  }
+
+  .inp {
+    display: flex;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .button {
+    height: 32px;
+    width: 40px;
+    padding-bottom: 35px;
+  }
+  .input {
+    width: 50%;
+    font-size: 0.8em;
+    vertical-align: middle;
+    padding-bottom: 0.8em;
+    margin-right: 2em;
+  }
+
+  .inp {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .button {
+    width: 30px;
+    font-size: 20px;
+    padding: 0;
+  }
+  .input {
+    font-size: 0.7em;
+    padding-top: 5px;
+  }
+}
+@media only screen and (max-width: 525px) {
+  .button {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    padding-top: 1px;
+    padding-bottom: 11px;
+  }
+  .input {
+    font-size: 0.5em;
+    padding-top: 1px;
+  }
+
+  .inp {
+    font-size: 0.6em;
+  }
+
+  .box h1 {
+    font-size: 1.4em;
+  }
+}
+@media only screen and (max-width: 353px) {
+  .button {
+    width: 17px;
+    height: 14px;
+    font-size: 13px;
+    padding-bottom: 15px;
+  }
+  .input {
+    font-size: 0.3em;
+    padding-top: 1px;
+    margin-right: 1em;
+  }
+
+  .inp input {
+    margin-right: 0.5em;
+    width: 7px;
+    margin-top: 3px;
+  }
+
+  .box h1 {
+    font-size: 15px;
+  }
+}

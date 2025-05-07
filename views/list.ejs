@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <div class="box">
+      <h1>Todo list</h1>
+    </div>
+    <div class="box">
+        <div >
+           
+      <% for(var i=0; i<exes.length;i++){ %>
+        
+        <div class="inp">
+          <input class="checkbox" type="checkbox" id="checkbox-<%= i %>" data-index="<%= i %>" />
+          <p class="para" id="task-<%= i %>"><%= exes[i] %></p>
+
+    </div>
+    <hr>
+      <% } %>
+    
+      
+    </div>
+      <form action="/" method="POST">
+        <input class="input" type="text" name="ele1" placeholder="Enter the task" />
+        <button class="button" type="submit">+</button>
+      </form>
+    </div>
+
+
+    <script>
+      
+const checkboxes = document.querySelectorAll(".checkbox");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function (event) {
+    console.log(event)
+    const taskId = this.getAttribute("data-index");
+    const taskParagraph = document.getElementById("task-" + taskId);
+
+    if (this.checked) {
+      taskParagraph.classList.add("checked");
+      
+    } else {
+      taskParagraph.classList.remove("checked");
+    }
+  });
+});
+      
+    </script>
+
+
+  </body>
+</html>
