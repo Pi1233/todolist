@@ -14,8 +14,12 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   var item = req.body.ele1;
-  items.push(item);
-  res.redirect("/");
+  if (item == "") {
+    res.redirect("/");
+  } else {
+    items.push(item);
+    res.redirect("/");
+  }
 });
 
 app.listen(8000, function () {
