@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <div class="box">
+      <h1>Todo list</h1>
+    </div>
+    <div class="box">
+        <div >
+           
+      <% exes.forEach(function(items,i){ %>
+
+<div class="inp">
+          <input class="checkbox" type="checkbox" id="checkbox-<%= i %>" data-index="<%= i %>" data-id="<%= items._id %>"/>
+          <p class="para" id="task-<%= i %>" name="parag"  data-index="<%= i %>" contenteditable="false" style="outline:none"><%= items.name %></p>
+
+          <form class="updatebutton" >
+
+            <button class="update11" name="upd" >
+              <ion-icon name="create-outline" class="iconedit" ></ion-icon>
+              <form action="/update"><ion-icon name="checkmark-outline" style="display:none" class="icontick"></ion-icon></form>
+            </button>
+
+          </form>
+
+          <form class="deletebutton" action="/delete" method="POST" >
+            <button name="del" value="<%= items._id %>">
+              <ion-icon name="trash-outline" class="button"></ion-icon>
+            </button>
+          </form>
+          
+    </div>
+
+    <hr>
+
+     <% }) %>
+    
+      <form action="/" method="POST" class="inputform">
+        <input class="input" type="text" name="ele1" placeholder="Enter the task" required/>
+        <button class="button" type="submit">+</button>
+      </form>
+
+    </div>  
+  </div>   
+    </div>
+    </div>
+
+
+    <script>
+      
+const checkboxes = document.querySelectorAll(".checkbox");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function (event) {
+    
+    const taskId = this.getAttribute("data-index");
+    const taskParagraph = document.getElementById("task-" + taskId);
+   
+
+    if (this.checked) {
+      taskParagraph.classList.add("checked");
+      
+    } else {
+      taskParagraph.classList.remove("checked");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".update11").forEach(btn => {
+    const checkbox = btn.closest(".inp").querySelector(".checkbox");
+    btn.addEventListener("click", e => {
+      e.preventDefault(); 
+  
+      const index = checkbox.dataset.index;
+      const para = document.getElementById(`task-${index}`);
+      const edit = btn.querySelector(".iconedit")
+      const tick = btn.querySelector(".icontick")
+     
+      if(para.contentEditable=="false" ){
+        para.contentEditable = true;
+        para.focus();
+        edit.style.display = "none";
+        tick.style.display = "";
+
+      }else{
+        
+        para.contentEditable = false;
+        edit.style.display = "";
+        tick.style.display = "none";
+
+        newpara = para.innerHTML;
+        const id = checkbox.dataset.id;
+      
+        fetch('/update',{
+          method:'PUT',
+          headers: {
+          'Content-Type': 'application/json'
+            },
+          body:JSON.stringify({id,data:newpara})
+        }).then(response =>{                                     // For writing in DOM manually because it will not work without it.
+                                                              //  It worked with name variable because I was writing to DOM manually (newpara = para.innerHTML)
+          if(response.ok){
+            console.log("ok")
+
+          } else{
+            console.log("Failed to update priority variable")
+          }
+        })
+      }
+      
+      
+    });
+  });
+});
+      
+    </script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
